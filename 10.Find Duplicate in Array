@@ -1,0 +1,83 @@
+Approach1
+#include <bits/stdc++.h>
+map based approach but it is not efficient;
+
+int findDuplicate(vector<int> &arr, int n){
+	// Write your code here.
+	unordered_map<int,int> mp;
+	for(auto it : arr)
+	{
+		mp[it]++;
+	}
+	for(auto it : mp)
+	{
+		if(it.second>=2) return it.first;
+	}
+	return 0;
+	
+}
+
+binary search based approach 
+int findDuplicate(vector<int> &arr, int n)
+
+{
+
+    sort( arr.begin() , arr.end() );
+
+    int rep;
+
+    int beg = 0 , end = n - 1 , mid;
+
+   int ans;
+
+    while( beg <= end )
+
+    {
+
+        mid = ( beg + end ) / 2;
+
+ 
+
+        if( arr[mid] > mid )
+
+        {
+
+          rep = arr[mid];
+
+          beg = mid + 1;
+
+        } 
+
+        else
+
+        {
+
+            rep = arr[mid];
+
+            end = mid - 1;
+
+        }
+
+    }
+
+    return rep;
+
+}
+
+Another Approach ot this question --->>>>>>>>>>>>>>>>>>>>>>>>
+
+int findDuplicate(vector<int> &arr, int n){
+
+    sort(arr.begin(), arr.end());
+
+    for(int i=0; i<arr.size()-1; i++){
+
+        if(arr[i]==arr[i+1])
+
+        return arr[i];
+
+    }
+
+    return -1;
+
+}
