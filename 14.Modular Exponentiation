@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+
+int modularExponentiation(int x, int n, int m) {
+	// Write your code here.
+
+
+	long z = 1;
+
+	long xxx = x;
+	while(n>0)
+	{
+		if(n%2!=0)
+		{
+			z = ((z)%m * (xxx)%m)%m;
+
+		}
+		xxx = ((xxx)%m * (xxx)%m)%m;
+		n = n>>1;
+	}
+return (int)(z%m);
+
+
+}
