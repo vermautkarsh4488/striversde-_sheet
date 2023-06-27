@@ -1,0 +1,50 @@
+Node* removeKthNode(Node* head, int K)
+{
+    // Write your code here.
+
+     Node* dummy =new Node();
+      dummy->next=head;
+     Node* slow=dummy;
+     Node* fast=dummy;
+     while(K--){
+         fast=fast->next;
+     }
+     while(fast!=NULL && fast->next!=NULL){
+           fast=fast->next;
+           slow=slow->next;
+     }
+       slow->next=slow->next->next;
+       return dummy->next;
+}
+
+
+ANOTHER SOLUTION -->>
+Node* removeKthNode(Node* head, int k)
+{
+    int ct=0;
+    Node* temp=head;
+    while(temp!=NULL)
+{
+    ct++;
+    temp=temp->next;
+}
+k=ct-k;
+temp=head;
+int i=0;
+if(k==0)
+{
+    return head->next;
+}
+while(i<k-1)
+{
+    temp=temp->next;
+    i++;
+
+}
+Node *tobedel=temp->next;
+Node* tobejoin=tobedel->next;
+tobedel->next=NULL;
+temp->next=tobejoin;
+return head;
+ 
+}
