@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+
+int singleNonDuplicate(vector<int>& arr)
+{
+	// Write your code here
+	int l = 0 , r = arr.size()-1;
+
+	while(l<r)
+	{
+		int mid = l +(r-l)/2;
+		if(mid%2 == 1)
+		{
+			mid--;
+
+		}
+		if(arr[mid]!=arr[mid+1])
+		{
+			r = mid;
+		}
+		else{
+			l = mid+2;
+
+		}
+	}
+
+	return arr[l];
+
+
+}
