@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+bool ischeck(int i , int j , string &s)
+{
+    while(i<=j)
+    {
+        if(s[i++]!=s[j--])
+        {
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
+string longestPalinSubstring(string &str)
+{
+    // Write your code here.
+    int n = str.size();
+    int maxi = INT_MIN;
+
+ string ss = "";
+
+    for(int i = 0; i<n; i++)
+    {
+        for(int j = n-1; j>=i; j--)
+        {
+            if(ischeck(i,j,str))
+            {
+                if(maxi<j-i+1)
+                {
+                    maxi = j-i+1;
+                    ss = str.substr(i,j-i+1);
+
+                }
+                break;
+            }
+        }
+    }
+
+    return ss;
+
+}
