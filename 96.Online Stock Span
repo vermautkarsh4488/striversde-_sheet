@@ -1,0 +1,24 @@
+#include <bits/stdc++.h> 
+vector<int> findSpans(vector<int> &price) {
+    // Write your code here.
+
+    vector<int> ans;
+    stack<int> st , stcnt;
+
+    for(int i = 0; i<price.size(); i++)
+    {
+        int cnt = 1;
+        while(!st.empty() and st.top()<=price[i])
+        {
+         cnt += stcnt.top();
+         stcnt.pop();
+         st.pop();
+        }
+        st.push(price[i]);
+        stcnt.push(cnt);
+        ans.push_back(cnt);
+    }
+
+    return ans;
+
+}
