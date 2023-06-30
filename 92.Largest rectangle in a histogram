@@ -1,0 +1,48 @@
+ 
+ #include <bits/stdc++.h>
+ int largestRectangle(vector < int > & arr) {
+   // Write your code here.
+
+    stack<int> st;
+            int n = arr.size();
+            
+            vector<int> leftwala(n);
+            vector<int> rightwala(n);
+            
+            for(int i =0; i<n; i++)
+            {
+                    while(!st.empty() and arr[st.top()]>=arr[i])
+                    {
+                            st.pop();
+                    }
+                    if(st.empty())
+                            leftwala[i] = 0;
+                    else
+                            leftwala[i] = st.top()+1;
+                              st.push(i);
+            }
+            
+            while(!st.empty())
+                    st.pop();
+            for(int i = n-1; i>=0; i--)
+            {
+                    while(!st.empty() and arr[st.top()]>=arr[i])
+                    {
+                            st.pop();
+                    }
+                    if(st.empty())
+                            rightwala[i] = n-1;
+                    else
+                            rightwala[i] = st.top()-1;
+                    st.push(i);
+                    
+            }
+            int ans = 0;
+            for(int i =0; i<n; i++)
+            {
+                    ans = max(ans , arr[i]*(rightwala[i]-leftwala[i]+1));
+            }
+            return ans;
+            
+            
+ }
