@@ -1,0 +1,78 @@
+#include <bits/stdc++.h> 
+// Stack class.
+class Stack {
+    
+    int *nums;
+    int top1 , size;
+
+public:
+    
+    Stack(int cap) {
+        this->size = cap;
+        nums = new int[cap];
+        top1 = -1;
+
+    }
+
+    void push(int num) {
+        if(size-top1>1)
+        {
+            top1++;
+            nums[top1] = num; 
+        }
+    }
+
+    int pop() {
+       if(top1>=0)
+       {
+           int res = nums[top1];
+           top1--;
+           return res;
+       }
+       else
+       {
+           return -1;
+
+       }
+    }
+    
+    int top() {
+        if(top1>=0)
+        {
+            return nums[top1];
+
+        }
+        else
+        {
+            return -1;
+
+        }
+    }
+    
+    int isEmpty() {
+       if(top1==-1)
+       {
+           return 1;
+
+       }
+       else
+       {
+           return 0;
+
+       }
+    }
+    
+    int isFull() {
+       if(top1==size)
+       {
+           return 1;
+
+       }
+       else
+       {
+           return 0;
+
+       }
+    }
+    
+};
