@@ -1,0 +1,21 @@
+
+void fxn( TreeNode *root , vector<int> &ans)
+{
+    if(root==NULL) return;
+    ans.push_back(root->data);
+    fxn(root->left,ans);
+    
+    fxn(root->right,ans);
+
+}
+vector<int> getPreOrderTraversal(TreeNode *root)
+{
+    // Write your code here.
+
+    vector<int> ans;
+
+    fxn(root,ans);
+
+    return ans;
+
+}
