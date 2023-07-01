@@ -1,0 +1,50 @@
+
+int fxn(TreeNode<int> *root , vector<int> &temp , int x)
+{
+	if(root==NULL) 
+	{
+		return 0;
+	}
+	if(root->data ==x)
+	{
+		temp.push_back(x);
+		return 1;
+
+	}
+	if(root->left)
+	{
+		if(fxn(root->left,temp,x))
+		{
+			temp.push_back(root->data);
+			return 1;
+
+		}
+	}
+
+	if(root->right)
+	{
+		if(fxn(root->right,temp,x))
+		{
+			temp.push_back(root->data);
+			return 1;
+
+		}
+	}
+	return 0;
+
+}
+
+
+vector<int> pathInATree(TreeNode<int> *root, int x)
+{
+    // Write your code here.
+
+	vector<int> temp;
+	fxn(root,temp,x);
+
+	reverse(temp.begin(),temp.end());
+	
+
+	return temp;
+
+}
