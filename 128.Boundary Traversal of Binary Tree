@@ -1,0 +1,77 @@
+
+bool is_leaf(TreeNode<int>*  root)
+{
+    return !root->left && !root->right;
+    
+}
+void Left_boundary( TreeNode<int>*  root , vector<int>& res)
+{
+   TreeNode<int>* curr = root->left;
+    while(curr)
+    {
+        if(!is_leaf(curr))
+        
+            res.push_back(curr->data);
+            
+        
+        if(curr->left) curr = curr->left;
+        else
+        curr = curr->right;
+        
+    }
+}
+
+    void Right_boundary(TreeNode<int>* root , vector<int>& res)
+    {
+       
+       TreeNode<int>* curr = root->right;
+         vector<int> temp;
+        while(curr)
+        {
+            if(!is_leaf(curr))
+            
+                temp.push_back(curr->data);
+            
+            
+        if(curr->right) curr = curr->right;
+        else curr = curr ->left;
+            
+        
+        }
+        
+        for(int i = temp.size()-1; i>=0; --i)
+        {
+            res.push_back(temp[i]);
+            
+        }
+    
+}
+
+void Leaf_Nodes(TreeNode<int>*  root , vector<int>& res)
+{
+    if(is_leaf(root)) 
+    {
+        res.push_back(root->data);
+    return;
+    }
+    
+    if(root->left)
+    Leaf_Nodes(root->left,res);
+    if(root->right)
+    Leaf_Nodes(root->right,res);
+    
+}
+vector<int> traverseBoundary(TreeNode<int>* root){
+    // Write your code here.
+     vector<int> res;
+        if(!root) return res;
+        if(!is_leaf(root)) res.push_back(root->data);
+        
+        
+        Left_boundary(root,res);
+         Leaf_Nodes(root,res);
+        Right_boundary(root,res);
+       
+        
+        return res;
+}
