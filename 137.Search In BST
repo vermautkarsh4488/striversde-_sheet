@@ -1,0 +1,29 @@
+
+void fxn(BinaryTreeNode<int> *root , vector<int> &ans)
+{
+    if(root==NULL )return ;
+    fxn(root->left,ans);
+    ans.push_back(root->data);
+    fxn(root->right,ans);
+
+}
+bool searchInBST(BinaryTreeNode<int> *root, int x) {
+    // Write your code here.
+
+    vector<int> ans;
+    fxn(root,ans);
+
+    for(int i = 0; i<ans.size(); i++)
+    {
+        if(ans[i]==x)
+        {
+            return true;
+
+        }
+        
+        
+
+    }
+    return false;
+
+}
