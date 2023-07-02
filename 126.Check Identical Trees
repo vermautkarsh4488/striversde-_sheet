@@ -1,0 +1,21 @@
+//  bool helper(BinaryTreeNode<int>* r1 ,BinaryTreeNode<int>* r2)
+//         {
+//                 if(r1==NULL and r2==NULL)
+//                         return true;
+//                 if(r1==NULL or r2 == NULL)
+//                         return false;
+//                 if(r1->data != r2->data)
+//                         return false;
+//                 return helper(r1->left,r2->right) && helper(r1->right,r2->left);
+                
+//         }
+bool identicalTrees(BinaryTreeNode<int>* r1, BinaryTreeNode<int>* r2) {
+    // Write your code here. 
+    if(r1==NULL and r2==NULL)
+                        return true;
+                if(r1==NULL or r2 == NULL)
+                        return false;
+                if(r1->data != r2->data)
+                        return false;
+                return identicalTrees(r1->left,r2->left) && identicalTrees(r1->right,r2->right);  	 
+}
