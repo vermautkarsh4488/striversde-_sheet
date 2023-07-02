@@ -1,0 +1,35 @@
+
+map<int,int> mp;
+
+TreeNode<int> *buildBinaryTree(vector<int> &preorder, int prestart, int preend,
+                    vector<int> &inorder, int instart, int inend) {
+ if(prestart>preend || instart>inend)
+                return NULL;
+         
+        TreeNode<int> * root = new TreeNode<int>(preorder[prestart]);
+        
+        int inRoot = mp[root->data];
+        
+        int numsLeft = inRoot-instart;
+        
+         root->left = buildBinaryTree(preorder,prestart+1,prestart+numsLeft,inorder,instart,inRoot-1);
+        
+        
+        root->right = buildBinaryTree(preorder,prestart+numsLeft+1,preend,inorder,inRoot+1,inend);
+        
+        return root;
+
+                    }
+TreeNode<int> *buildBinaryTree(vector<int> &inorder, vector<int> &preorder)
+{
+	//    Write your code here
+      for(int  i  =0; i<inorder.size(); i++)
+            {
+                    mp[inorder[i]] = i;
+                    
+                    
+            }
+            
+            TreeNode<int>* root = buildBinaryTree(preorder,0,preorder.size()-1,inorder,0,inorder.size()-1);
+            return root;
+}
