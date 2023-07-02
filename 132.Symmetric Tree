@@ -1,0 +1,19 @@
+
+        bool helper(BinaryTreeNode<int>* r1 ,BinaryTreeNode<int>* r2)
+        {
+                if(r1==NULL and r2==NULL)
+                        return true;
+                if(r1==NULL or r2 == NULL)
+                        return false;
+                if(r1->data != r2->data)
+                        return false;
+                return helper(r1->left,r2->right) && helper(r1->right,r2->left);
+                
+        }
+
+bool isSymmetric(BinaryTreeNode<int>* root)
+{
+    // Write your code here. 
+
+    return (root == NULL) || helper(root->left,root->right);   
+}
