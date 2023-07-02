@@ -1,0 +1,26 @@
+
+void fxn(TreeNode<int>* root , vector<int> &ans)
+{
+    if(root==NULL) return;
+
+    fxn(root->left,ans);
+    ans.push_back(root->data);
+    fxn(root->right,ans);
+
+}
+int KthLargestNumber(TreeNode<int>* root, int k) 
+{
+    // Write your code here.
+
+    vector<int> ans;
+    fxn(root,ans);
+
+   if(k>ans.size())
+   {
+       return -1;
+
+   }
+    return ans[ans.size()-k];
+
+
+}
