@@ -1,0 +1,22 @@
+
+void fxn(TreeNode<int> *root , vector<int>& temp)
+{
+    if(root==NULL) return ;
+    fxn(root->left,temp);
+    temp.push_back(root->data);
+    fxn(root->right,temp);
+
+}
+int kthSmallest(TreeNode<int> *root, int k)
+{
+	//	Write the code here.
+    vector<int> temp;
+    fxn(root,temp);
+
+    // for(int i = 0; i<temp.size())
+    // {
+
+    // }
+    return temp[k-1];
+
+}
