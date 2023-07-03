@@ -1,0 +1,34 @@
+#include <bits/stdc++.h> 
+
+int dp[1001][1001];
+
+int fxn(int n , int k , vector<int> & arr)
+{
+    if(k ==0) return 1;
+    if(n==0) return 0;
+
+if(dp[n][k]!=-1) return dp[n][k];
+
+    if(arr[n-1]<=k)
+    {
+        return   dp[n][k] = fxn(n-1,k-arr[n-1],arr) or fxn(n-1,k,arr);
+
+    }
+
+    return  dp[n][k] =  fxn(n-1,k,arr);
+}
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+    // Write your code here.
+for(int i = 0; i<1001; i++)
+{
+    for(int j = 0; j<1001; j++)
+    {
+        dp[i][j] = -1;
+        
+    }
+}
+
+
+    return fxn(n,k,arr);
+
+}
