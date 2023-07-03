@@ -1,0 +1,33 @@
+
+int dp[1001][1001];
+
+int fxn (int i , int j , string &s , string &t)
+{
+	if(i==s.size() or j == t.size()) return 0;
+
+if(dp[i][j]!=-1) return dp[i][j];
+
+	if(s[i]==t[j])
+	{
+		return 1 + fxn(i+1,j+1,s,t);
+	}
+	int a  = fxn(i+1,j,s,t);
+	int b = fxn(i,j+1,s,t);
+	return dp[i][j] =  max(a,b);
+}
+int lcs(string s, string t)
+{
+	//Write your code here
+
+	for(int i = 0; i<1001; i++)
+	{
+		for(int j = 0; j<1001; j++)
+		{
+			dp[i][j] = -1;
+
+		}
+	}
+
+	return fxn(0,0,s,t);
+
+}
