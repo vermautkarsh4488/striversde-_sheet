@@ -1,0 +1,54 @@
+#include <bits/stdc++.h> 
+  int dp[2001];
+        bool check(int l , int r ,string &s)
+        {
+                while(l<r)
+                {
+                if(s[l]==s[r])
+                {
+                 l++;
+                        r--;
+                        
+                }
+                        else return false;
+                        
+                        
+                }
+                return true;
+                
+                
+        }
+       int partition(int i ,int n ,  string &s )
+       {
+              
+               if(i>=n)
+                       return 0;
+               if(dp[i]!=-1)
+                       return dp[i];
+               
+               int min_cost = INT_MAX;
+               int cost = 0;
+               for(int j = i; j<n; j++)
+               {
+                       if(check(i,j,s))
+                             cost = 1+partition(j+1,n,s);
+                      
+                       min_cost = min(min_cost,cost);
+                       
+               }
+               return dp[i] =  min_cost;
+               
+       }
+int palindromePartitioning(string str) {
+    // Write your code here
+
+ for(int i = 0; i<2001; i++)
+        {
+            dp[i] = -1;
+            
+        }
+        int n = str.size();
+
+        return partition(0,n,str)-1;
+
+}
