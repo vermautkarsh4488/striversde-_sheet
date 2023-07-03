@@ -1,0 +1,35 @@
+#include <bits/stdc++.h> 
+int dp[101][101];
+
+int fxn(int i , int j  , vector<vector<int>> &grid)
+{
+    int n = grid.size();
+    int m = grid[0].size();
+
+    if(i==n-1 && j==m-1) return grid[i][j];
+    if(i>=n or j>=m ) return 1e9;
+
+if(dp[i][j]!=-1) return dp[i][j];
+
+    int a = grid[i][j] + fxn(i+1,j,grid);
+    int b = grid[i][j] + fxn(i,j+1,grid);
+
+return dp[i][j] =  min(a,b);
+ }
+int minSumPath(vector<vector<int>> &grid) {
+    // Write your code here.
+    int n = grid.size();
+    int m = grid[0].size();
+
+for(int i=0; i<101; i++)
+{
+    for(int j = 0; j<101; j++)
+    {
+        dp[i][j] = -1;
+
+    }
+}
+    return fxn(n-1,m-1,grid);
+
+
+}
